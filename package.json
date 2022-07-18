@@ -1,0 +1,29 @@
+{
+  "name": "project-urlshortnergroup59",
+  "version": "1.0.0",
+  "description": "URL shortner project group 59",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arman672/project-urlShortnerGroup59.git"
+  },
+  "keywords": [
+    "url"
+  ],
+  "author": "Group",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arman672/project-urlShortnerGroup59/issues"
+  },
+  "homepage": "https://github.com/arman672/project-urlShortnerGroup59#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4",
+    "shortid": "^2.2.16",
+    "valid-url": "^1.0.9"
+  }
+}
