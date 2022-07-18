@@ -5,16 +5,18 @@ const urlModel = require("../models/urlModel")
 const shortenUrl = async function(req,res){
     const longUrl = req.body.longUrl
 
+
     if(!longUrl) 
         return res.status(400).send({status: false, message: "please enter longUrl"})
 
-    //Use regex here instead of package
-    if(!validator.isUri(longUrl)) 
+    const regUrl = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-/]))?/
+
+    if(!regUrl.test(longUrl)) 
         return res.status(400).send({status: false, message: "please enter valid longUrl"})
 
-    const findUrl = await urlModel.findOne({longUrl: longUrl})
+    const findUrl = await urlModel.findOne({longUrl: longUrl}).select({_id:0, urlCode:1,longUrl:1,shortUrl:1})
     if(findUrl)
-        return res.status(400).send({status: false, message: "short url already exists"}) 
+        return res.status(200).send({status: false, message: "short url already exists", data: findUrl}) 
 
     let short = shortId.generate(longUrl)
     let shortUrl = `localhost:3000/${short}`
