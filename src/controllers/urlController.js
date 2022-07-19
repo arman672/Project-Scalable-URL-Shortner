@@ -1,4 +1,3 @@
-const validator = require('valid-url')
 const shortId = require('shortid')
 const urlModel = require("../models/urlModel")
 
@@ -38,9 +37,6 @@ const getLongUrl = async function (req, res) {
     try {
         let urlCode = req.params.urlCode
 
-        if (!urlCode)
-            return res.status(400).send({ status: false, message: "urlCode cannot be empty" })
-
         if (!shortId.isValid(urlCode))
             return res.status(400).send({ status: false, message: "urlCode is invalid" })
 
@@ -49,7 +45,7 @@ const getLongUrl = async function (req, res) {
         if (!findLongUrl)
             return res.status(404).send({ status: false, message: "url not found for the given url code" })
 
-        return res.status(302).send({ status: true, data: findLongUrl })
+        return res.status(302).redirect(findLongUrl.longUrl);
     } catch (err) {
         return res.status(500).send({ status: false, message: err.message })
     }
