@@ -22,7 +22,7 @@ redisClient.on("connect", async function () {
 
 const SET_ASYNC = promisify(redisClient.SETEX).bind(redisClient);
 const GET_ASYNC = promisify(redisClient.GET).bind(redisClient);
-//===========================================================radis setup======================================================^
+//===========================================================radis setup end======================================================^
 
 
 
